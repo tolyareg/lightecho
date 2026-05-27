@@ -22,8 +22,10 @@ namespace LightEcho
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
 
-            _gameState = new GameState(); // model
-            _presenter = new GamePresenter(_gameState, this);
+            _gameState = new GameState(); 
+            _presenter = new GamePresenter(_gameState, this); 
+
+            AudioSynth.StartBGM();
         }
 
         [STAThread]

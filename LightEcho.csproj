@@ -38,8 +38,13 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainForm.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Model\AudioSynth.cs" />
+    <Compile Include="Model\Connection.cs" />
     <Compile Include="Model\GameObject.cs" />
+    <Compile Include="Model\Leech.cs" />
     <Compile Include="Model\GameState.cs" />
     <Compile Include="Model\Node.cs" />
     <Compile Include="Model\Player.cs" />
