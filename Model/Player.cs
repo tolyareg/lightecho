@@ -14,19 +14,17 @@ namespace LightEcho.Model
         public bool MovingLeft { get; set; }
         public bool MovingRight { get; set; }
         
-        public bool HasMoved { get; private set; } // for tutorial
+        public bool HasMoved { get; private set; } 
 
         public Player(float x, float y) : base(x, y) { }
 
         public override void Update(float deltaTime)
         {
-            // movement physics
             if (MovingUp) { VelocityY -= Acceleration * deltaTime; HasMoved = true; }
             if (MovingDown) { VelocityY += Acceleration * deltaTime; HasMoved = true; }
             if (MovingLeft) { VelocityX -= Acceleration * deltaTime; HasMoved = true; }
             if (MovingRight) { VelocityX += Acceleration * deltaTime; HasMoved = true; }
 
-            // friction
             VelocityX *= Friction;
             VelocityY *= Friction;
 
@@ -37,7 +35,6 @@ namespace LightEcho.Model
                 VelocityY = (VelocityY / speed) * MaxSpeed;
             }
 
-            // update position
             X += VelocityX * deltaTime;
             Y += VelocityY * deltaTime;
         }

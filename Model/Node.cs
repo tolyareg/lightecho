@@ -8,20 +8,15 @@ namespace LightEcho.Model
         public float Energy { get; set; }
         public float MaxEnergy { get; set; } = 100f;
         public float EnergyDecayRate { get; set; } = 5f;
+        public bool IsBeingAttacked { get; set; }
+        public bool HasTriggeredOverload { get; set; }
         
-        public List<Node> Neighbors { get; private set; } = new List<Node>();
-
         public Node(float x, float y, float startEnergy = 50f) : base(x, y)
         {
             Energy = startEnergy;
-        }
-
-        public void AddNeighbor(Node other)
-        {
-            if (!Neighbors.Contains(other))
+            if (startEnergy >= 100f)
             {
-                Neighbors.Add(other);
-                other.Neighbors.Add(this);
+                HasTriggeredOverload = true;
             }
         }
 
@@ -29,6 +24,11 @@ namespace LightEcho.Model
         {
             Energy -= EnergyDecayRate * deltaTime;
             if (Energy < 0) Energy = 0;
+
+            if (Energy < 95f)
+            {
+                HasTriggeredOverload = false;
+            }
         }
 
         public void GainEnergy(float amount)
@@ -36,7 +36,6 @@ namespace LightEcho.Model
             Energy += amount;
             if (Energy > MaxEnergy) Energy = MaxEnergy;
             
-            // todo: bfs trigger 
         }
     }
 }
